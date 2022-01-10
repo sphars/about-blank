@@ -1,7 +1,9 @@
 # about:blank
 A simple, blank webpage. No more distractions when you open your browser. 
 
-View the **[live page](https://blank.statik.sh)**
+View the **[live page](https://blank.statik.sh)**  
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/ad4e2eb0-bc25-4226-bfcc-063da725f6e5/deploy-status)](https://app.netlify.com/sites/aboutblank-page/deploys)
 
 ## Usage
 By default, the page color is based on browser/OS theme, and uses #F2F2F2 for light and #262626 for dark.  
