@@ -1,6 +1,13 @@
-function setBackgroundColor(color) {
-    let bodyEl = document.querySelector('body');
-    bodyEl.style.backgroundColor = '#' + color;
+function getURLParams() {
+    let params = new URLSearchParams(window.location.search);
+    
+    if (params.has('color')){
+        if(params.get('color') == 'random'){
+            setColors(getRandomHexCode());
+        } else {
+            setColors(params.get('color'));
+        }
+    }
 }
 
 function getRandomHexCode(){
@@ -12,19 +19,43 @@ function getRandomHexCode(){
     return color;
 }
 
-function getURLParams() {
-    let params = new URLSearchParams(window.location.search);
+function setColors(color) {
+    let bodyEl = document.querySelector('body');
+    bodyEl.style.backgroundColor = '#' + color;
+
+    let infoBtn = document.getElementById('info-btn');
+    infoBtn.style.color = '#' + invertColor(color);
+}
+
+function invertColor(hex, bw){
+    // https://stackoverflow.com/a/35970186/
+
+    // convert 3 digit hex to 6
+    if(hex.length === 3) {
+        hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2]; 
+    }
+
+    let r = parseInt(hex.slice(0,2), 16), 
+        g = parseInt(hex.slice(2,4), 16),
+        b = parseInt(hex.slice(4,6), 16);
     
-    if (params.has('color')){
-        if(params.get('color') == 'random'){
-            setBackgroundColor(getRandomHexCode());
-        } else {
-            setBackgroundColor(params.get('color'));
-        }
+    // set to black/white
+    if(bw){
+        return(r * 0.299 + g * 0.587 + b * 0.114) > 186 ? '262626' : 'F2F2F2';
     }
-    else{
-        console.log('no color specified');
-    }
+
+    // invert color components
+    r = (255 - r).toString(16);
+    g = (255 - g).toString(16);
+    b = (255 - b).toString(16);
+
+    return padZero(r) + padZero(g) + padZero(b);
+}
+
+function padZero(str, len){
+    len = len || 2;
+    var zeros = new Array(len).join('0');
+    return (zeros + str).slice(-len);
 }
 
 window.addEventListener('load', getURLParams(), false);
