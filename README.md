@@ -18,5 +18,5 @@ Everytime I open a new tab or browser window, I'm faced with a collection of boo
 
 Also, I could set the homepage to `about:blank` but that's a blank, white page, regardless of theme settings. I needed a dark page, especially at night.
 
-## Future
-Gonna keep this simple. Don't really need anything extra.
+## Credits
+Icon from [Iconoir](https://iconoir.com)
