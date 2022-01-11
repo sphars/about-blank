@@ -24,7 +24,7 @@ function setColors(color) {
     bodyEl.style.backgroundColor = '#' + color;
 
     let infoBtn = document.getElementById('info-btn');
-    infoBtn.style.color = '#' + invertColor(color);
+    infoBtn.style.color = '#' + invertColor(color, 'bw');
 }
 
 function invertColor(hex, bw){
@@ -39,7 +39,7 @@ function invertColor(hex, bw){
         g = parseInt(hex.slice(2,4), 16),
         b = parseInt(hex.slice(4,6), 16);
     
-    // set to black/white
+    // set to dark/light
     if(bw){
         return(r * 0.299 + g * 0.587 + b * 0.114) > 186 ? '262626' : 'F2F2F2';
     }
