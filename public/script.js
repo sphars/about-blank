@@ -1,11 +1,16 @@
 function getURLParams() {
-    let params = new URLSearchParams(window.location.search);
-    
+    let params = new URLSearchParams(window.location.search);    
+    let validHexCode = /^([0-9a-f]{3}){1,2}$/i;
+
     if (params.has('color')){
-        if(params.get('color') == 'random'){
+        let color = params.get('color');
+
+        if(color == 'random'){
             setColors(getRandomHexCode());
+        } else if (validHexCode.test(color)) {
+            setColors(color);
         } else {
-            setColors(params.get('color'));
+            return;
         }
     }
 }
