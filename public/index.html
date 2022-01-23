@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="A simple, blank webpage. No more distractions when you open your browser.">
-    
+
     <title>about:blank</title>
 
     <style>
-        html,body {
+        html,
+        body {
             width: 100%;
             height: 100%;
             margin: 0;
         }
-        
+
         body {
             background-color: #f2f2f2;
         }
@@ -28,28 +30,101 @@
             right: 0;
             color: #262626;
         }
-    
+
         @media (prefers-color-scheme: dark) {
             body {
                 background-color: #262626;
             }
 
-            #info-btn{
+            #info-btn {
                 color: #f2f2f2;
             }
         }
     </style>
-    
+
 </head>
+
 <body>
     <a id="info-btn" href="https://github.com/sphars/about-blank/">
-        <svg width="28" height="28" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 11.5V16.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M12 7.51L12.01 7.49889" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
+        <svg width="28" height="28" stroke-width="1.5" viewBox="0 0 24 24" fill="none"
+            xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 11.5V16.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M12 7.51L12.01 7.49889" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" />
+            <path
+                d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+                stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
     </a>
 
-    <script src="/script.js" defer></script>
+    <script>
+        function getURLParams() {
+            let params = new URLSearchParams(window.location.search);
+            let validHexCode = /^([0-9a-f]{3}){1,2}$/i;
+
+            if (params.has('color')) {
+                let color = params.get('color');
+
+                if (color == 'random') {
+                    setColors(getRandomHexCode());
+                } else if (validHexCode.test(color)) {
+                    setColors(color);
+                } else {
+                    return;
+                }
+            }
+        }
+
+        function getRandomHexCode() {
+            let letters = '0123456789ABCDEF';
+            let color = '';
+            for (let i = 0; i < 6; i++) {
+                color += letters[(Math.floor(Math.random() * 16))];
+            }
+            return color;
+        }
+
+        function setColors(color) {
+            let bodyEl = document.querySelector('body');
+            bodyEl.style.backgroundColor = '#' + color;
+
+            let infoBtn = document.getElementById('info-btn');
+            infoBtn.style.color = '#' + invertColor(color, 'bw');
+        }
+
+        function invertColor(hex, bw) {
+            // https://stackoverflow.com/a/35970186/
+
+            // convert 3 digit hex to 6
+            if (hex.length === 3) {
+                hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
+            }
+
+            let r = parseInt(hex.slice(0, 2), 16),
+                g = parseInt(hex.slice(2, 4), 16),
+                b = parseInt(hex.slice(4, 6), 16);
+
+            // set to dark/light
+            if (bw) {
+                return (r * 0.299 + g * 0.587 + b * 0.114) > 186 ? '262626' : 'F2F2F2';
+            }
+
+            // invert color components
+            r = (255 - r).toString(16);
+            g = (255 - g).toString(16);
+            b = (255 - b).toString(16);
+
+            return padZero(r) + padZero(g) + padZero(b);
+        }
+
+        function padZero(str, len) {
+            len = len || 2;
+            var zeros = new Array(len).join('0');
+            return (zeros + str).slice(-len);
+        }
+
+        window.addEventListener('load', getURLParams(), false);
+
+    </script>
 </body>
+
 </html>
