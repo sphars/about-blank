@@ -1,14 +1,14 @@
 # about:blank
 A simple, blank webpage. No more distractions when you open your browser. 
 
-View the **[live page](https://blank.statik.sh)**  
+View the **[live page](https://aboutblank.page)**  
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/ad4e2eb0-bc25-4226-bfcc-063da725f6e5/deploy-status)](https://app.netlify.com/sites/aboutblank-page/deploys)
 
 ## Usage
 By default, the page color is based on browser/OS theme, and uses #F2F2F2 for light and #262626 for dark.  
 
-For a custom color, set the URL query parameter `color` to any HEX code, such as [https://blank.statik.sh/?color=273747](https://blank.statik.sh/?color=273747). For even more fun, set `color` to [`random`](https://blank.statik.sh?/color=random). Note: JavaScript needs to be enabled to use this feature.  
+For a custom color, set the URL query parameter `color` to any HEX code, such as [https://blank.statik.sh/?color=273747](https://aboutblank.page/?color=273747). For even more fun, set `color` to [`random`](https://aboutblank.page/?color=random). Note: JavaScript needs to be enabled to use this feature.  
 
 ### For new tabs
 On Chrome/Edge, if you'd like to set this page as your new tab page, you'll have to use an extension. [NewTab-Redirect](https://github.com/jimschubert/newtab-redirect) works well for this. Other browsers like Firefox and Vivaldi allow you to set a URL as the new tab page. Not sure about Safari.
