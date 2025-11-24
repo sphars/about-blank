@@ -8,7 +8,7 @@ View the **[live page](https://aboutblank.page)**
 ## Usage
 By default, the page color is based on browser/OS theme, and uses #F2F2F2 for light and #262626 for dark.  
 
-For a custom color, set the URL query parameter `color` to any HEX code, such as [https://aboutblank.page/?color=273747](https://aboutblank.page/?c=273747). For even more fun, set `color` to [`random`](https://aboutblank.page/?color=random). 
+For a custom color, set the URL query parameter `color` to any HEX code, such as [https://aboutblank.page/?color=273747](https://aboutblank.page/?color=273747). For even more fun, set `color` to [`random`](https://aboutblank.page/?color=random). 
 
 **Note: JavaScript needs to be enabled to use custom colors.**
 
